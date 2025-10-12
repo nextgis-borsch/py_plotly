@@ -149,7 +149,7 @@ message(STATUS "Unpacked: ${wheel} -> ${OUT_DIR}")
 ]=])
 
 add_custom_target(build_wheel ALL
-    COMMAND "${PYTHON_EXECUTABLE}" -m pip install --upgrade build
+    COMMAND "${PYTHON_EXECUTABLE}" -m pip install --isolated -U pip build setuptools wheel "narwhals>=1.15.1" --upgrade build
     COMMAND "${PYTHON_EXECUTABLE}" -m build --wheel --outdir ${CMAKE_CURRENT_BINARY_DIR}/out ${CMAKE_CURRENT_BINARY_DIR}/${OUT_DIR_NAME}
     COMMAND "${CMAKE_COMMAND}"
             -D DIST_DIR=${CMAKE_CURRENT_BINARY_DIR}/out/
